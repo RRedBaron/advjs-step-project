@@ -1,0 +1,47 @@
+.container{
+  background-image: url("martha-dominguez-de-gouveia-nMyM7fxpokE-unsplash 1.png");
+}
+
+.container-menu{
+  display: flex;
+  justify-content: space-between;
+}
+.navbar-logo{
+
+}
+.buttons-menu li{
+  display: inline-block;
+  list-style: none;
+}
+.buttons-menu{
+  padding: 25px;
+}
+.button-white{
+  padding:16px 30px 16px 30px;
+  border-radius:10px;
+  margin-right: 10px;
+  background-color: transparent;
+  border: 4px solid white;
+  color: white;
+}
+.button-white:hover{
+  background-color: #68C0AE;
+  border: 4px solid #68C0AE;
+  color: white;
+}
+.button-green{
+  padding:16px 30px 16px 30px;
+  border-radius:10px;
+  margin-right: 10px;
+  background-color: #68C0AE;
+  border: 4px solid #68C0AE;
+  color: white;
+}
+.button-green:hover{
+  background-color: white;
+  border: 4px solid white;
+  color: #68C0AE;
+}
+.hidden{
+  display: none;
+}
