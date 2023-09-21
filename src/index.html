@@ -7,7 +7,6 @@
   </head>
   <body>
   <div class="container">
-    <h1>!</h1>
     <nav class="navbar">
       <div class="container-menu">
         <a href="#" class="navbar-logo">
@@ -15,12 +14,36 @@
         </a>
         <ul class="buttons-menu">
           <li><button type="button" class="button-white">Реєстрація</button></li>
-          <li><button type="button" class="button-green">Вхід в кабінет</button></li>
+          <li><button type="button" class="button-green" id="open">Вхід в кабінет</button></li>
           <li><button type="button" class="hidden  button-white">Створити візит</button></li>
           <li><button type="button" class="hidden button-green">Вийти</button></li>
         </ul>
       </div>
     </nav>
+
+    <div class="pop-up-form" id="form">
+      <div class="pop-up-container">
+        <form class="log-in-form" autocomplete="off">
+          <h1 class="log-form-title">Вхід в особистий кабінет</h1>
+
+          <div class="form_input">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" placeholder="Your email" required autocomplete="off">
+          </div>
+
+          <div class="form_input">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Your password" required autocomplete="off">
+          </div>
+
+          <button type="submit" id="enter">Увійти</button>
+        </form>
+        <div class="pop-up-close" id="close">&#10006</div>
+      </div>
+    </div>
+    <div class="name_of_visit">
+      Створити візит
+    </div>
   </div>
   </body>
 </html>
