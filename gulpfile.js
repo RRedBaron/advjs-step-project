@@ -9,7 +9,7 @@ const htmlmin = require("gulp-htmlmin");
 
 const paths = {
   build: {
-    html: "./index.html",
+    html: "./dist/index.html",
     css: "./dist/css/",
     js: "./dist/js/",
     img: "./dist/assets/",
@@ -60,7 +60,7 @@ function cleanDist() {
 function browserSync() {
   browsersync.init({
     server: {
-      baseDir: "./",
+      baseDir: "./dist",
     },
     port: 3000,
     notify: false,
