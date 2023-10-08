@@ -1,54 +1,53 @@
-body{
-  background-image: url("martha-dominguez-de-gouveia-nMyM7fxpokE-unsplash 1.png");
+body {
+  background-image: url("../img/martha-dominguez-de-gouveia-nMyM7fxpokE-unsplash 1.png");
 }
-.container{
-  background-image: url("martha-dominguez-de-gouveia-nMyM7fxpokE-unsplash 1.png");
+.container {
+  background-image: url("../img/martha-dominguez-de-gouveia-nMyM7fxpokE-unsplash 1.png");
 }
 
-.container-menu{
+.container-menu {
   display: flex;
   justify-content: space-between;
 }
-.navbar-logo{
-
+.navbar-logo {
 }
-.buttons-menu li{
+.buttons-menu li {
   display: inline-block;
   list-style: none;
 }
-.buttons-menu{
+.buttons-menu {
   padding: 25px;
 }
-.button-white{
-  padding:16px 30px 16px 30px;
-  border-radius:10px;
+.button-white {
+  padding: 16px 30px 16px 30px;
+  border-radius: 10px;
   margin-right: 10px;
   background-color: transparent;
   border: 4px solid white;
   color: white;
 }
-.button-white:hover{
-  background-color: #68C0AE;
-  border: 4px solid #68C0AE;
+.button-white:hover {
+  background-color: #68c0ae;
+  border: 4px solid #68c0ae;
   color: white;
 }
-.button-green{
-  padding:16px 30px 16px 30px;
-  border-radius:10px;
+.button-green {
+  padding: 16px 30px 16px 30px;
+  border-radius: 10px;
   margin-right: 10px;
-  background-color: #68C0AE;
-  border: 4px solid #68C0AE;
+  background-color: #68c0ae;
+  border: 4px solid #68c0ae;
   color: white;
 }
-.button-green:hover{
+.button-green:hover {
   background-color: white;
   border: 4px solid white;
-  color: #68C0AE;
+  color: #68c0ae;
 }
-.hidden{
+.hidden {
   display: none;
 }
-.pop-up-form{
+.pop-up-form {
   display: none;
   position: fixed;
   z-index: 2;
@@ -56,15 +55,15 @@ body{
   width: 100%;
   height: 100%;
 }
-.pop-up-form.active{
+.pop-up-form.active {
   display: block;
 }
-.pop-up-container{
+.pop-up-container {
   display: flex;
   width: 100%;
   height: 100%;
 }
-.log-in-form{
+.log-in-form {
   background-color: white;
   width: 500px;
   margin: auto;
@@ -72,7 +71,7 @@ body{
   padding: 16px 50px 16px 50px;
   position: relative;
 }
-.log-form-title{
+.log-form-title {
   font-family: Montserrat;
   font-size: 32px;
   font-weight: 600;
@@ -80,19 +79,18 @@ body{
   border-bottom: solid 1px darkgrey;
   padding-bottom: 20px;
 }
-.form_input input{
+.form_input input {
   width: 100%;
   border-radius: 5px;
   padding: 5px;
-
 }
-.pop-up-close{
+.pop-up-close {
   position: absolute;
-  top:15px;
+  top: 15px;
   right: 15px;
 }
 /*Назва візиту змінити*/
-.name_of_visit{
+.name_of_visit {
   display: none;
   background-color: white;
   width: 500px;
