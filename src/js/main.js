@@ -1,36 +1,38 @@
-const openPopUp =document.getElementById('open');
-const popUpForm =document.getElementById('form');
-const popUpClose =document.getElementById('close');
+class Modal {
+  constructor(modalClassName) {
+    this.modal = document.querySelector(`.${modalClassName}`);
+    this.closeBtn = this.modal.querySelector(".login-modal__close-button");
+  }
 
-openPopUp.addEventListener('click',function (e){
-    e.preventDefault();
-    popUpForm.classList.add('active');
-})
-popUpClose.addEventListener('click',(e)=>{
-    popUpForm.classList.remove('active');
-})
-const loginForm =document.querySelector('.log-in-form');
-const loginUrl="https://ajax.test-danit.com/api/v2/cards/login";
-const TOKEN ='token';
-loginForm.addEventListener('submit',(e)=> {
-    e.preventDefault();
-    const body={};
-    e.target.querySelectorAll('input').forEach(input=> {
-        body[input.name]= input.value
-    })
-    axios.post(loginUrl,body)
-        .then(({data})=> {
-            localStorage.setItem(TOKEN,data)
-        })
-})
-const newWindow =document.querySelector('.name_of_visit')
-function authorization(){
-    popUpForm.classList.remove('active');
-    newWindow.style.display='block';
+  open() {
+    this.modal.style.display = "flex";
+  }
+
+  close() {
+    this.modal.style.display = "none";
+  }
+
+  init() {
+    document.getElementById("login-button").addEventListener("click", () => {
+      this.open();
+    });
+
+    this.closeBtn.addEventListener("click", () => {
+      this.close();
+    });
+
+    window.addEventListener("click", (event) => {
+      if (event.target === this.modal) {
+        this.close();
+      }
+    });
+  }
 }
-const enterNextWindow =document.getElementById('enter')
-if(localStorage.getItem(TOKEN)){
-    enterNextWindow.addEventListener('click',(e)=>{
-        authorization()
-    })
-};
+
+document.querySelector("#signup-button").addEventListener("click", () => {
+  window.location.href =
+    "https://ajax.test-danit.com/front-pages/cards-register.html";
+});
+
+const modal = new Modal("login-modal");
+modal.init();

@@ -1,0 +1,20 @@
+.header {
+  &__navbar {
+    display: flex;
+    padding: 25px 75px;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    width: 100%;
+    height: auto;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    width: auto;
+    height: auto;
+  }
+}
