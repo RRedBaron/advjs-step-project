@@ -25,9 +25,7 @@ const paths = {
 };
 
 function html() {
-  return src(paths.src.html)
-    .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(dest("./dist"));
+  return src(paths.src.html).pipe(dest("./dist")).pipe(browsersync.stream());
 }
 
 function styles() {
