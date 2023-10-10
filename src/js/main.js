@@ -2,6 +2,8 @@ class Modal {
   constructor(modalClassName) {
     this.modal = document.querySelector(`.${modalClassName}`);
     this.closeBtn = this.modal.querySelector(".login-modal__close-button");
+    this.submitBtn = this.modal.querySelector("#login-sumbit-btn");
+    console.log(this.submitBtn);
   }
 
   open() {
@@ -21,6 +23,31 @@ class Modal {
       this.close();
     });
 
+    this.submitBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      const email = this.modal.querySelector("#email").value;
+      const password = this.modal.querySelector("#password").value;
+
+      fetch("https://ajax.test-danit.com/api/v2/cards/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      }).then((response) => {
+        if (response.status === 200) {
+          this.close();
+          document.getElementById("login-button").style.display = "none";
+          document.getElementById("signup-button").style.display = "none";
+          document.getElementById("logout-button").style.display = "block";
+          document.getElementById("create-visit-button").style.display =
+            "block";
+          document.querySelector(".main").classList.remove("main--hidden");
+        } else {
+          alert("Wrong email or password");
+        }
+      });
+    });
     window.addEventListener("click", (event) => {
       if (event.target === this.modal) {
         this.close();

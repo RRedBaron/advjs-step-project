@@ -1,0 +1,41 @@
+.main {
+  width: 1300px;
+
+  &--hidden {
+    display: none;
+  }
+
+  &__filter-cards {
+    display: flex;
+    align-items: flex-end;
+    gap: 50px;
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 10px;
+
+    input {
+      font-family: "Montserrat", sans-serif;
+      font-size: 18px;
+      margin-top: 15px;
+      padding: 10px 12px;
+
+      width: 100%;
+      height: 50px;
+      border-radius: 10px;
+    }
+
+    select {
+      font-family: "Montserrat", sans-serif;
+      padding: 10px 12px;
+      font-size: 18px;
+      margin-top: 15px;
+      width: 100%;
+      height: 50px;
+      border-radius: 10px;
+    }
+  }
+
+  &__filter-cards-wrapper {
+    width: 400px;
+  }
+}
