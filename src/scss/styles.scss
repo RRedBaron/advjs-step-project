@@ -1,13 +1,12 @@
 @import "reset";
+@import "variables";
 
 @import "./header/header";
 @import "./main/main";
-
-body {
-  font-family: "Montserrat", sans-serif;
-}
+@import "./modals/loginmodal";
 
 .container {
+  font-family: $default-font;
   background-image: url("../img/background-img.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -15,130 +14,4 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-}
-
-.button {
-  font-family: "Montserrat", sans-serif;
-
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 10px;
-  padding: 16px, 30px, 16px, 30px;
-  width: 200px;
-  height: 60px;
-
-  &--white {
-    background-color: transparent;
-    border: 4px solid white;
-    color: white;
-
-    &:hover {
-      background-color: #68c0ae;
-      border: 4px solid #68c0ae;
-      color: white;
-    }
-  }
-
-  &--green {
-    background-color: #68c0ae;
-    border: 4px solid #68c0ae;
-    color: white;
-
-    &:hover {
-      background-color: white;
-      border: 3px solid #68c0ae;
-      color: #68c0ae;
-    }
-  }
-
-  &--red {
-    background-color: #e76f51;
-    border: 4px solid #e76f51;
-    color: white;
-    height: 50px;
-
-    &:hover {
-      background-color: white;
-      border: 3px solid #e76f51;
-      color: #e76f51;
-    }
-  }
-
-  &--hidden {
-    display: none;
-  }
-}
-
-.login-modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-
-  hr {
-    border: none;
-    height: 2px;
-    background-color: rgba(0, 0, 0, 0.25);
-    margin: 2px 0;
-  }
-
-  svg {
-    cursor: pointer;
-  }
-
-  .button {
-    margin-top: 30px;
-    margin-left: 50px;
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 50px;
-  }
-
-  &__title {
-    font-size: 2rem;
-  }
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    background-color: #fefefe;
-    margin: 10% auto;
-    border: 1px solid #888;
-    width: 800px;
-    height: 520px;
-    border-radius: 20px;
-  }
-
-  &__form {
-    padding: 40px 50px 20px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 18px;
-
-    label {
-      font-size: 1.5rem;
-    }
-
-    input {
-      border-radius: 10px;
-      padding: 15px;
-      font-size: 20px;
-
-      &:focus {
-        outline: none;
-        border: #68c0ae solid 3px;
-      }
-    }
-  }
 }
