@@ -9,13 +9,13 @@ const htmlmin = require("gulp-htmlmin");
 
 const paths = {
   build: {
-    html: "./dist/index.html",
+    html: "./index.html",
     css: "./dist/css/",
     js: "./dist/js/",
     img: "./dist/img/",
   },
   src: {
-    html: "./src/index.html",
+    html: "./index.html",
     scss: "./src/**/*.scss",
     js: "./src/**/*.js",
     img: "./src/img/**/*.{jpg,png,svg,gif,ico,webp}",
@@ -23,10 +23,6 @@ const paths = {
   base: "./src",
   clean: "./dist",
 };
-
-function html() {
-  return src(paths.src.html).pipe(dest("./dist")).pipe(browsersync.stream());
-}
 
 function styles() {
   return src(paths.src.scss)
@@ -58,7 +54,7 @@ function cleanDist() {
 function browserSync() {
   browsersync.init({
     server: {
-      baseDir: "./dist",
+      baseDir: "./",
     },
     port: 3000,
     notify: false,
@@ -69,5 +65,5 @@ function browserSync() {
   watch([paths.src.html]).on("change", browsersync.reload);
 }
 
-exports.build = series(cleanDist, html, styles, scripts, images);
+exports.build = series(cleanDist, styles, scripts, images);
 exports.default = browserSync;
