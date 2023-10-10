@@ -1,7 +1,8 @@
 .header {
+  width: 1300px;
   &__navbar {
     display: flex;
-    padding: 25px 75px;
+    padding: 25px 0;
     justify-content: space-between;
   }
 
@@ -12,9 +13,16 @@
 
   &__buttons {
     display: flex;
-    gap: 15px;
     align-items: center;
     width: auto;
     height: auto;
+
+    #signup-button {
+      margin-right: 20px;
+    }
+
+    #create-visit-button {
+      margin-right: 20px;
+    }
   }
 }

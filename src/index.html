@@ -21,7 +21,11 @@
           </a>
           <ul class="header__buttons">
             <li>
-              <button type="button" class="button button--white">
+              <button
+                type="button"
+                class="button button--white"
+                id="signup-button"
+              >
                 Реєстрація
               </button>
             </li>
@@ -35,35 +39,97 @@
               </button>
             </li>
             <li>
-              <button type="button" class="button button--white button--hidden">
+              <button
+                type="button"
+                class="button button--white button--hidden"
+                id="create-visit-button"
+              >
                 Створити візит
               </button>
             </li>
             <li>
-              <button type="button" class="button button--green button--hidden">
+              <button
+                type="button"
+                class="button button--green button--hidden"
+                id="logout-button"
+              >
                 Вийти
               </button>
             </li>
           </ul>
         </nav>
       </header>
+      <main class="main main--hidden">
+        <div class="main__filter-cards">
+          <div class="main__filter-cards-wrapper">
+            <p class="main__label">Пошук за інформацією</p>
+            <input
+              class="main__input"
+              type="text"
+              id="search"
+              placeholder="Пошук"
+            />
+          </div>
+          <div class="main__filter-cards-wrapper">
+            <p class="main__label">Пріорітетність візиту</p>
+            <select>
+              <option value="" selected disabled>- Оберіть опцію -</option>
+              <option value="high">High</option>
+              <option value="medium">Low</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <div class="main__filter-cards-wrapper">
+            <p class="main__label">Статус візиту</p>
+            <select>
+              <option value="" selected disabled>- Оберіть опцію -</option>
+              <option value="high">Open</option>
+              <option value="medium">Done</option>
+            </select>
+          </div>
+          <button class="button button--red">Скинути</button>
+        </div>
+      </main>
     </div>
     <div class="login-modal">
       <div class="login-modal__content">
-        <span class="login-modal__close-button">&times;</span>
-        <h2 class="login-modal__title">Вхід в особистий кабінет</h2>
+        <div class="login-modal__header">
+          <h2 class="login-modal__title">Вхід в особистий кабінет</h2>
+          <svg
+            class="login-modal__close-button"
+            xmlns="http://www.w3.org/2000/svg"
+            width="27"
+            height="27"
+            viewBox="0 0 27 27"
+            fill="none"
+          >
+            <path
+              d="M26 1L13.5 13.5M1 26L13.5 13.5M13.5 13.5L26 26L1 1"
+              stroke="black"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+        <hr />
         <form class="login-modal__form">
-          <label for="username">Email адресафывфыф</label>
+          <label for="email">Email адреса</label>
           <input
-            id="username"
+            id="email"
             type="text"
             placeholder="example@example.ua"
             required
           />
           <label for="password">Пароль</label>
           <input id="password" type="password" placeholder="Пароль" required />
-          <button type="submit">Увійти</button>
         </form>
+        <hr />
+        <button
+          type="submit"
+          class="button button--green"
+          id="login-sumbit-btn"
+        >
+          Увійти
+        </button>
       </div>
     </div>
     <script src="js/script.min.js"></script>
