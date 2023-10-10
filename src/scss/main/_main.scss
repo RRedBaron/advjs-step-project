@@ -1,3 +1,5 @@
+@import "../common/button";
+
 .main {
   width: 1300px;
 
@@ -9,12 +11,12 @@
     display: flex;
     align-items: flex-end;
     gap: 50px;
-    color: white;
+    color: $white;
     font-size: 1.5rem;
     margin-top: 10px;
 
     input {
-      font-family: "Montserrat", sans-serif;
+      font-family: $default-font;
       font-size: 18px;
       margin-top: 15px;
       padding: 10px 12px;
@@ -25,7 +27,7 @@
     }
 
     select {
-      font-family: "Montserrat", sans-serif;
+      font-family: $default-font;
       padding: 10px 12px;
       font-size: 18px;
       margin-top: 15px;

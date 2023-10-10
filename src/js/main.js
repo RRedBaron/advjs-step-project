@@ -48,7 +48,7 @@ class Modal {
         }
       });
     });
-    window.addEventListener("click", (event) => {
+    window.addEventListener("mousedown", (event) => {
       if (event.target === this.modal) {
         this.close();
       }
