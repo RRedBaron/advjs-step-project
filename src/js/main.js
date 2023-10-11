@@ -1,65 +1,40 @@
-class Modal {
-  constructor(modalClassName) {
-    this.modal = document.querySelector(`.${modalClassName}`);
-    this.closeBtn = this.modal.querySelector(".login-modal__close-button");
-    this.submitBtn = this.modal.querySelector("#login-sumbit-btn");
-    console.log(this.submitBtn);
+const loginButton = document.querySelector("#login-button");
+const clearFiltersButton = document.querySelector("#clear-filters-button");
+const searchInput = document.querySelector("#search");
+const urgencySelect = document.querySelector("#urgency-select");
+const statusSelect = document.querySelector("#status-select");
+const logoutButton = document.querySelector("#logout-button");
+
+window.onload = () => {
+  console.log(localStorage.getItem("token"));
+  if (localStorage.getItem("token")) {
+    document.querySelector("#login-button").classList.add("button--hidden");
+    document.querySelector("#signup-button").classList.add("button--hidden");
+    document.querySelector("#logout-button").classList.remove("button--hidden");
+    document
+      .querySelector("#create-visit-button")
+      .classList.remove("button--hidden");
+    document.querySelector(".main").classList.remove("main--hidden");
   }
+};
 
-  open() {
-    this.modal.style.display = "flex";
-  }
+loginButton.addEventListener("click", () => {
+  const loginModal = new LoginModal();
+  loginModal.render();
+});
 
-  close() {
-    this.modal.style.display = "none";
-  }
+logoutButton.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  location.reload();
+});
 
-  init() {
-    document.getElementById("login-button").addEventListener("click", () => {
-      this.open();
-    });
-
-    this.closeBtn.addEventListener("click", () => {
-      this.close();
-    });
-
-    this.submitBtn.addEventListener("click", (event) => {
-      event.preventDefault();
-      const email = this.modal.querySelector("#email").value;
-      const password = this.modal.querySelector("#password").value;
-
-      fetch("https://ajax.test-danit.com/api/v2/cards/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      }).then((response) => {
-        if (response.status === 200) {
-          this.close();
-          document.getElementById("login-button").style.display = "none";
-          document.getElementById("signup-button").style.display = "none";
-          document.getElementById("logout-button").style.display = "block";
-          document.getElementById("create-visit-button").style.display =
-            "block";
-          document.querySelector(".main").classList.remove("main--hidden");
-        } else {
-          alert("Wrong email or password");
-        }
-      });
-    });
-    window.addEventListener("mousedown", (event) => {
-      if (event.target === this.modal) {
-        this.close();
-      }
-    });
-  }
-}
+clearFiltersButton.addEventListener("click", () => {
+  searchInput.value = "";
+  urgencySelect.selectedIndex = 0;
+  statusSelect.selectedIndex = 0;
+});
 
 document.querySelector("#signup-button").addEventListener("click", () => {
   window.location.href =
     "https://ajax.test-danit.com/front-pages/cards-register.html";
 });
-
-const modal = new Modal("login-modal");
-modal.init();

@@ -72,7 +72,7 @@
           </div>
           <div class="main__filter-cards-wrapper">
             <p class="main__label">Пріорітетність візиту</p>
-            <select>
+            <select id="urgency-select">
               <option value="" selected disabled>- Оберіть опцію -</option>
               <option value="high">High</option>
               <option value="medium">Low</option>
@@ -81,56 +81,20 @@
           </div>
           <div class="main__filter-cards-wrapper">
             <p class="main__label">Статус візиту</p>
-            <select>
+            <select id="status-select">
               <option value="" selected disabled>- Оберіть опцію -</option>
               <option value="high">Open</option>
               <option value="medium">Done</option>
             </select>
           </div>
-          <button class="button button--red">Скинути</button>
+          <button class="button button--red" id="clear-filters-button">
+            Скинути
+          </button>
+        </div>
+        <div class="main__cards-showcase">
+          <div class="main__card"></div>
         </div>
       </main>
-    </div>
-    <div class="login-modal">
-      <div class="login-modal__content">
-        <div class="login-modal__header">
-          <h2 class="login-modal__title">Вхід в особистий кабінет</h2>
-          <svg
-            class="login-modal__close-button"
-            xmlns="http://www.w3.org/2000/svg"
-            width="27"
-            height="27"
-            viewBox="0 0 27 27"
-            fill="none"
-          >
-            <path
-              d="M26 1L13.5 13.5M1 26L13.5 13.5M13.5 13.5L26 26L1 1"
-              stroke="black"
-              stroke-width="2"
-            />
-          </svg>
-        </div>
-        <hr />
-        <form class="login-modal__form">
-          <label for="email">Email адреса</label>
-          <input
-            id="email"
-            type="text"
-            placeholder="example@example.ua"
-            required
-          />
-          <label for="password">Пароль</label>
-          <input id="password" type="password" placeholder="Пароль" required />
-        </form>
-        <hr />
-        <button
-          type="submit"
-          class="button button--green"
-          id="login-sumbit-btn"
-        >
-          Увійти
-        </button>
-      </div>
     </div>
     <script src="dist/js/script.min.js"></script>
   </body>
