@@ -1,5 +1,6 @@
 .login-modal {
-  display: none;
+  font-family: $default-font;
+  display: flex;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -18,11 +19,6 @@
 
   svg {
     cursor: pointer;
-  }
-
-  .button {
-    margin-top: 30px;
-    margin-left: 50px;
   }
 
   &__header {
@@ -49,24 +45,28 @@
 
   &__form {
     padding: 40px 50px 20px;
-    height: 300px;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 18px;
+    gap: 15px;
 
-    label {
+    span {
       font-size: 1.5rem;
     }
 
     input {
+      outline: none;
+      border: $grey solid 2px;
       border-radius: 10px;
       padding: 15px;
+      margin-bottom: 20px;
       font-size: 20px;
+      transition: transform 0.3s ease;
 
       &:focus {
         outline: none;
-        border: $light-green solid 3px;
+        border: $light-green solid 2px;
+        transform: scale(1.01);
       }
     }
   }

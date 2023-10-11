@@ -16,6 +16,8 @@
     margin-top: 10px;
 
     input {
+      border: none;
+      outline: none;
       font-family: $default-font;
       font-size: 18px;
       margin-top: 15px;
@@ -27,6 +29,7 @@
     }
 
     select {
+      border: none;
       font-family: $default-font;
       padding: 10px 12px;
       font-size: 18px;
@@ -39,5 +42,13 @@
 
   &__filter-cards-wrapper {
     width: 400px;
+  }
+
+  &__cards-showcase {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 50px;
+    margin-top: 30px;
   }
 }
