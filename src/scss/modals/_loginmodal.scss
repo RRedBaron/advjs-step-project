@@ -43,14 +43,13 @@
     border-radius: 20px;
   }
 
-  &__form {
-    padding: 40px 50px 20px;
+  &__input-wrapper {
+    position: relative;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
     gap: 15px;
+    flex-direction: column;
 
-    span {
+    p {
       font-size: 1.5rem;
     }
 
@@ -58,8 +57,8 @@
       outline: none;
       border: $grey solid 2px;
       border-radius: 10px;
+      margin-bottom: 15px;
       padding: 15px;
-      margin-bottom: 20px;
       font-size: 20px;
       transition: transform 0.3s ease;
 
@@ -68,6 +67,29 @@
         border: $light-green solid 2px;
         transform: scale(1.01);
       }
+    }
+
+    #email-error {
+      position: absolute;
+      top: 85%;
+      right: 0;
+      color: $light-red;
+    }
+  }
+
+  &__form {
+    padding: 40px 50px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    button {
+      margin-top: 15px;
+    }
+
+    span {
+      margin-top: 10px;
+      color: $light-red;
     }
   }
 }

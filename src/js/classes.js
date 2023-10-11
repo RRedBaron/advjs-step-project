@@ -38,8 +38,6 @@ class Modal {
 class LoginModal extends Modal {
   constructor() {
     super();
-    this.validateEmail = this.validateEmail.bind(this);
-    this.validatePassword = this.validatePassword.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.close = this.close.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -51,28 +49,40 @@ class LoginModal extends Modal {
       "Вхід в особистий кабінет";
     this.div.querySelector(".login-modal__content").innerHTML += `
     <form class="login-modal__form">
-      <span>Email адреса</span>
-      <input
-        id="email"
-        type="text"
-        placeholder="example@example.ua"
-        required
-      />
-      <span>Пароль</span>
-      <input id="password" type="password" placeholder="Пароль" required />
+      <div class="login-modal__input-wrapper">
+        <p>Email адреса</p>
+        <input
+          id="email"
+          type="text"
+          placeholder="example@example.ua"
+          required
+        />
+        <span class="login-form__validation-error" id="email-error"></span>
+      </div>
+      <div class="login-modal__input-wrapper">
+        <p>Пароль</p>
+        <input id="password" type="password" placeholder="Пароль" required />
+      </div>
       <button type="submit" class="button button--green" id="login-submit-btn">Увійти</button>
+      <span class="login-form__validation-error" id="wrong-credentials"></span>
     </form>
     `;
 
     const emailInput = this.div.querySelector("#email");
-    const passwordInput = this.div.querySelector("#password");
     const closeButton = this.div.querySelector(".login-modal__close-button");
     const loginButton = this.div.querySelector("#login-submit-btn");
 
     closeButton.addEventListener("click", this.close);
 
-    emailInput.addEventListener("input", this.validateEmail);
-    passwordInput.addEventListener("input", this.validatePassword);
+    emailInput.addEventListener("input", (event) => {
+      this.div.querySelector("#wrong-credentials").textContent = "";
+      if (this.validateEmail(event.target.value)) {
+        this.div.querySelector("#email-error").textContent = "";
+      } else {
+        this.div.querySelector("#email-error").textContent =
+          "Введіть коректний email";
+      }
+    });
 
     loginButton.addEventListener("click", this.handleLogin);
 
@@ -82,13 +92,8 @@ class LoginModal extends Modal {
 
   close() {
     this.div.remove();
-    const emailInput = this.div.querySelector("#email");
-    const passwordInput = this.div.querySelector("#password");
     const closeButton = this.div.querySelector(".login-modal__close-button");
     const button = this.div.querySelector("#login-submit-btn");
-
-    emailInput.removeEventListener("input", this.validateEmail);
-    passwordInput.removeEventListener("input", this.validatePassword);
 
     button.removeEventListener("click", this.handleLogin);
     closeButton.removeEventListener("click", this.close);
@@ -101,22 +106,28 @@ class LoginModal extends Modal {
     }
   }
 
-  // todo
-  validateEmail() {
-    console.log("validateEmail");
-  }
-
-  // todo
-  validatePassword() {
-    console.log("validatePassword");
+  validateEmail(email) {
+    const EMAIL_REGEXP =
+      /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+    return EMAIL_REGEXP.test(email);
   }
 
   handleLogin(event) {
     event.preventDefault();
     const email = this.div.querySelector("#email").value;
     const password = this.div.querySelector("#password").value;
+
+    const emailError = this.div.querySelector("#email-error");
+    if (!this.validateEmail(email)) {
+      emailError.textContent = "Введіть коректний email";
+      return;
+    } else {
+      emailError.textContent = ""; // Очищаем сообщение об ошибке, если email валидный
+    }
+
     if (!email || !password) {
-      alert("Введіть логін та пароль");
+      this.div.querySelector("#wrong-credentials").textContent =
+        "Перевірте введені дані";
       return;
     }
     fetch("https://ajax.test-danit.com/api/v2/cards/login", {
@@ -142,7 +153,8 @@ class LoginModal extends Modal {
         this.close();
         return;
       }
-      alert("Невірний логін або пароль");
+      this.div.querySelector("#wrong-credentials").textContent =
+        "Невірний логін або пароль";
     });
   }
 }
