@@ -5,6 +5,11 @@ const urgencySelect = document.querySelector("#urgency-select");
 const statusSelect = document.querySelector("#status-select");
 const logoutButton = document.querySelector("#logout-button");
 
+
+//=============== S
+const createVisitButton = document.getElementById("create-visit-button");
+//================
+
 window.onload = () => {
   console.log(localStorage.getItem("token"));
   if (localStorage.getItem("token")) {
@@ -38,3 +43,11 @@ document.querySelector("#signup-button").addEventListener("click", () => {
   window.location.href =
     "https://ajax.test-danit.com/front-pages/cards-register.html";
 });
+
+
+//============== S
+createVisitButton.addEventListener("click", () => {
+  console.log("test");
+  const createVisitModal = new CreateVisitModal();  
+  createVisitModal.render();
+})

@@ -159,14 +159,90 @@ class LoginModal extends Modal {
   }
 }
 
+// class CreateVisitModal extends Modal {
+// constructor() {
+// super();
+// }
+// 
+// render() {
+// super.render();
+// this.div.querySelector(".login-modal__title").textContent =
+// "Записати на прийом";
+// }
+// }
+
+
+//============= S
+
 class CreateVisitModal extends Modal {
   constructor() {
     super();
+    this.close = this.close.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   render() {
     super.render();
     this.div.querySelector(".login-modal__title").textContent =
-      "Записати на прийом";
+      "Створити візит";
+    this.div.querySelector(".login-modal__content").innerHTML += `
+    <form class="login-modal__form">
+      <div class="login-modal__input-wrapper">
+        <p>Оберіть лікаря</p>
+        <select id="docselect" required>
+          <option value="doc1">Кардіолог</option>
+          <option value="doc2">Стоматолог</option>
+          <option value="doc3">Терапевт</option>
+        </select>
+      </div>  
+      <button type="submit" class="button button--green" id="create-btn">Створити</button>    
+    </form>
+    `;
+
+    const closeButton = this.div.querySelector(".login-modal__close-button");
+    const createButton = this.div.querySelector("#create-btn");
+
+    closeButton.addEventListener("click", this.close);
+
+    document.body.appendChild(this.div);
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+
+  close() {
+    this.div.remove();
+    const closeButton = this.div.querySelector(".login-modal__close-button");
+    const button = this.div.querySelector("#login-submit-btn");
+
+    closeButton.removeEventListener("click", this.close);
+  }
+
+  handleClickOutside(event) {
+    if (event.target === this.div) {
+      this.close();
+      document.removeEventListener("mousedown", this.handleClickOutside);
+    }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
