@@ -158,15 +158,3 @@ class LoginModal extends Modal {
     });
   }
 }
-
-class CreateVisitModal extends Modal {
-  constructor() {
-    super();
-  }
-
-  render() {
-    super.render();
-    this.div.querySelector(".login-modal__title").textContent =
-      "Записати на прийом";
-  }
-}

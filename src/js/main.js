@@ -6,11 +6,6 @@ const urgencySelect = document.querySelector("#urgency-select");
 const statusSelect = document.querySelector("#status-select");
 const logoutButton = document.querySelector("#logout-button");
 
-
-//=============== S
-const createVisitButton = document.getElementById("create-visit-button");
-//================
-
 window.onload = () => {
   console.log(localStorage.getItem("token"));
   if (localStorage.getItem("token")) {

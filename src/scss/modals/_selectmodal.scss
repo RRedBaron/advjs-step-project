@@ -21,21 +21,22 @@
     }
 
     &__btn-close {
-        width: 20px;
-        height: 20px;
+        width: 20px; 
+        height: 20px; 
         cursor: pointer;
         background-color: #fff;
         border: none;
-        background-image: url('../img/close.svg');
+        background-image: url('../../img/close.svg'); //не працює ../img/close.svg
         background-repeat: no-repeat;
         background-size: 100%;
+        padding-right: 20px;  
     }
-
+      
     &__header {
         display: flex;
         justify-content: space-between;
         padding-bottom: 30px;
-        border-bottom: 2px solid rgba(0, 0, 0, 0.25);;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.25);
 
         &_title {
             font-size: 32px;
