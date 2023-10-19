@@ -6,8 +6,10 @@
 @import "./header/header";
 @import "./main/main";
 @import "./modals/loginmodal";
+@import "./modals/selectmodal";
+@import "./modals/selectmodal";
 
-.container {
+body {
   font-family: $default-font;
   background-image: url("../img/background-img.png");
   background-size: cover;
