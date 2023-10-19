@@ -1,5 +1,8 @@
 .header {
-  width: 1300px;
+  max-width: 1600px;
+  width: calc(100% - 40px); //s
+  
+  // width: 1300px;
   &__navbar {
     display: flex;
     padding: 25px 0;

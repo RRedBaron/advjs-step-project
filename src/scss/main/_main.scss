@@ -1,7 +1,17 @@
 @import "../common/button";
 
 .main {
-  width: 1300px;
+  // width: 1300px;
+  max-width: 1600px;
+  width: calc(100% - 40px);
+
+  // @include tablet {
+    // 
+  // }
+
+  // @include mobile {
+
+  // }
 
   &--hidden {
     display: none;
@@ -10,10 +20,17 @@
   &__filter-cards {
     display: flex;
     align-items: flex-end;
-    gap: 50px;
+    gap: 70px;
     color: $white;
     font-size: 1.5rem;
     margin-top: 10px;
+    
+    @include tablet {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
 
     input {
       border: none;

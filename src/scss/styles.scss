@@ -1,6 +1,8 @@
 @import "reset";
 @import "variables";
 
+@import "./mixins";
+
 @import "./header/header";
 @import "./main/main";
 @import "./modals/loginmodal";
