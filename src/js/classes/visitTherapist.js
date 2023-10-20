@@ -8,7 +8,7 @@ class VisitTherapist extends Visit {
         super.createElements();
     
         this.form.insertAdjacentHTML('beforeend', `
-			<input type="number" name="age" id="age" class="modal-select__select" placeholder="Вік *" required>
+			<input type="number" name="age" id="age" class="modal-form__age" placeholder="Вік *" required>
 		`);                
     }
 
@@ -16,7 +16,7 @@ class VisitTherapist extends Visit {
 
 
     validate() {
-        this.inputAge = this.form.querySelector('.age');
+        this.inputAge = this.form.querySelector('.modal-form__age');
         if (this.inputAge.value > 110) {
             this.inputAge.classList.add('empty');
             this.inputAge.value = "";

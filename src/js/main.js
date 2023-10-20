@@ -73,7 +73,8 @@ createCardBtn.addEventListener("click", () => {
   
       if (response) {
         const { data } = response;
-        await checkUserCards();
+        // await checkUserCards();
+        console.log(data);
   
         new Card(data).render(CARDS_CONTAINER);
         close();
