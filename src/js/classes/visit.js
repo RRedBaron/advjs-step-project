@@ -10,9 +10,11 @@ class Visit extends Form {
     createElements () {
         super.createElements();
         this.form.className = 'modal__form';
-        this.selectPriority.className = 'select__priority';
+        // this.selectPriority.className = 'select__priority';
+        this.selectPriority.className = 'modal-select__select';
 		this.selectPriority.id = 'priority';
-        this.selectStatus.className = 'select__status';
+        // this.selectStatus.className = 'select__status';
+        this.selectStatus.className = 'modal-select__select';
 		this.selectStatus.id = 'status';
 
 		this.selectPriority.innerHTML = `<option selected value="">Терміновість</option>
@@ -28,12 +30,12 @@ class Visit extends Form {
     
         this.form.prepend(this.selectStatus);                
         this.form.append(this.selectPriority);
-        this.form.insertAdjacentHTML('beforeend', `
-        <input type="text" name="fullName" id="fullName" class="modal-form__control" placeholder="ПІБ" required>
-        <input type="text" name="purpose" id="purpose" class="modal-form__control" placeholder="Мета візиту" required>
-        <textarea type="text" name="descriptionVisit" id="descriptionVisit" class="modal-form__control" placeholder="Короткий опис візиту" rows="5"></textarea>`)                   
+        this.form.insertAdjacentHTML('beforeend', ` 
+        <input type="text" name="fullName" id="fullName" class="modal-select__select" placeholder="ПІБ *" required>
+        <input type="text" name="purpose" id="purpose" class="modal-select__select" placeholder="Мета візиту *" required>
+        <textarea type="text" name="descriptionVisit" id="descriptionVisit" class="modal-select__select" placeholder="Короткий опис візиту" rows="5"></textarea>`)                   
     }
-
+//в insertAdjacentHTML були класи modal-form__control
     getValues() {    
 
         const body = super.getValues(); 

@@ -8,9 +8,11 @@ class VisitTherapist extends Visit {
         super.createElements();
     
         this.form.insertAdjacentHTML('beforeend', `
-			<input type="number" name="age" id="age" class="modal-form__age" placeholder="Вік" required>
+			<input type="number" name="age" id="age" class="modal-select__select" placeholder="Вік *" required>
 		`);                
     }
+
+    //<input type="number" name="age" id="age" class="modal-form__age" placeholder="Вік" required>
 
 
     validate() {

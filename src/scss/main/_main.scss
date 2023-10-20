@@ -2,8 +2,6 @@
 
 .main {
   // width: 1300px;
-  max-width: 1600px;
-  width: calc(100% - 40px);
 
   &--hidden {
     display: none;
@@ -11,6 +9,7 @@
 
   &__filter-cards {
     display: flex;
+    justify-content: space-between;
     align-items: flex-end;
     gap: 70px;
     color: $white;

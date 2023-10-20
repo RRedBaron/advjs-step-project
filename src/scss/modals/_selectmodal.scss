@@ -22,11 +22,11 @@
 
     &__btn-close {
         width: 20px; 
-        height: 20px; 
+        // height: 20px; 
         cursor: pointer;
         background-color: #fff;
         border: none;
-        background-image: url('../../img/close.svg'); //не працює ../img/close.svg
+        background-image: url('../img/close.svg'); 
         background-repeat: no-repeat;
         background-size: 100%;
         padding-right: 20px;  
