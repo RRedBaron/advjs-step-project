@@ -14,7 +14,7 @@ class VisitTherapist extends Visit {
 
 
     validate() {
-        this.inputAge = this.form.querySelector('.age');
+        this.inputAge = this.form.querySelector('.modal-form__age');
         if (this.inputAge.value > 110) {
             this.inputAge.classList.add('empty');
             this.inputAge.value = "";
