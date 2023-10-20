@@ -173,7 +173,7 @@ class LoginModal extends Modal {
     })
       .then((response) => {
         if (response) {
-          localStorage.setItem("token", response); //!
+          localStorage.setItem("token", response); // ! 141
           document.querySelector("#login-button").classList.add("button--hidden");
           document
             .querySelector("#signup-button")
