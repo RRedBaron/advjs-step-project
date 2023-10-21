@@ -6,8 +6,9 @@ const urgencySelect = document.querySelector("#urgency-select");
 const statusSelect = document.querySelector("#status-select");
 const logoutButton = document.querySelector("#logout-button");
 
+const cardList = new CardList();
+
 window.onload = () => {
-  console.log(localStorage.getItem("token"));
   if (localStorage.getItem("token")) {
     document.querySelector("#login-button").classList.add("button--hidden");
     document.querySelector("#signup-button").classList.add("button--hidden");
@@ -16,6 +17,9 @@ window.onload = () => {
       .querySelector("#create-visit-button")
       .classList.remove("button--hidden");
     document.querySelector(".main").classList.remove("main--hidden");
+
+    // instance('').then(res => console.log('cards', res));
+    cardList.render();
   }
 };
 
@@ -74,13 +78,18 @@ createCardBtn.addEventListener("click", () => {
       if (response) {
         const { data } = response;
         // await checkUserCards();
+
+        cardList.renderCard(data);
+
         console.log(data);
   
-        new Card(data).render(CARDS_CONTAINER);
+        // new Card(data).render(CARDS_CONTAINER);
         close();
       }
     };
   
     new ModalWindow(selectTypeDoctor.getFormElement(), "Створити візит", "Створити", confirmUser).render();
   });
+
+  
   

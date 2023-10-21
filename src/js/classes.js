@@ -1,3 +1,51 @@
+class CardList {
+
+  renderCard = (card) => {
+    console.log(card); 
+    
+    const div = document.createElement("div");
+    div.classList.add("main__card");
+    div.innerHTML = `
+    <div class="showcard">
+    <div class="showcard__header">
+      <h2>${card.doctor}</h2>
+      <svg
+          class="login-modal__close-button"
+          xmlns="http://www.w3.org/2000/svg"
+          width="27"
+          height="27"
+          viewBox="0 0 27 27"
+          fill="none"
+        >
+          <path
+            d="M26 1L13.5 13.5M1 26L13.5 13.5M13.5 13.5L26 26L1 1"
+            stroke="black"
+            stroke-width="2"
+          />
+        </svg>
+        <div>${card.status}</div>
+        <div>${card.priority}</div>
+    </div>
+    <hr />
+  </div>
+    `
+    document.querySelector(".main__cards-showcase").appendChild(div);
+
+    //main__cards-showcase
+    // main__card  
+
+  }
+
+  render = () => {
+    document.querySelector(".main__cards-showcase").innerHTML = "";
+
+    instance('').then(res => {
+      res.data.forEach(card => { this.renderCard(card) })
+    })
+  }
+}
+
+
 class Modal {
   constructor() {
     this.div = null;
@@ -186,6 +234,10 @@ class LoginModal extends Modal {
             .classList.remove("button--hidden");
           document.querySelector(".main").classList.remove("main--hidden");
           this.close();
+
+          // instance('').then(res => console.log('cards', res));
+
+          cardList.render();
         }
       });
   }

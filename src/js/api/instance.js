@@ -19,7 +19,6 @@ const instance = axios.create({
     }
 );
   
-instance('').then(res => console.log('res  =>', res)); //
-//nmp install axios - import ili required
+//nmp install axios -> import abo required
 
 
