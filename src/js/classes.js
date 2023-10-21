@@ -23,6 +23,7 @@ class CardList {
             stroke-width="2"
           />
         </svg>
+        <div>${card.fullName}</div>
         <div>${card.status}</div>
         <div>${card.priority}</div>
     </div>
