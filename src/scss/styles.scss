@@ -9,7 +9,8 @@
 @import "./modals/selectmodal";
 @import "./modals/selectmodal";
 
-@import "./main/showcards";
+@import "./cards/createcards";
+@import "./cards/showcards";
 
 body {
   font-family: $default-font;

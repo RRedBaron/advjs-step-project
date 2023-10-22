@@ -9,13 +9,13 @@ class VisitCardiologist extends Visit {
         super.createElements();
     
         this.form.insertAdjacentHTML('beforeend', ` 
-			<input type="text" name="pressure" id="pressure" class="modal-select__select" placeholder="Звичайний артеріальний тиск у форматі 70/110 *" required>
+			<input type="text" name="pressure" id="pressure" class="modal-select__select pressure" placeholder="Звичайний артеріальний тиск у форматі 70/110 *" required>
 			<input type="number" name="weight" id="weight" class="modal-select__select" placeholder="Індекс маси тіла *" required>
 			<input type="text" name="diseases" id="diseases" class="modal-select__select" placeholder="Перенесені захворювання серцево-судинної системи *" required>
 			<input type="number" name="age" id="age" class="modal-select__select age" placeholder="Вік *" required>
 		`);                
     }
-       // form-control pressure orm-control form-control form-control age
+    
     validateAge() {
         this.inputAge = this.form.querySelector('.age');
         if (this.inputAge.value > 110) {

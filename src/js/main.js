@@ -6,8 +6,6 @@ const urgencySelect = document.querySelector("#urgency-select");
 const statusSelect = document.querySelector("#status-select");
 const logoutButton = document.querySelector("#logout-button");
 
-const cardList = new CardList();
-
 window.onload = () => {
   if (localStorage.getItem("token")) {
     document.querySelector("#login-button").classList.add("button--hidden");
@@ -17,9 +15,6 @@ window.onload = () => {
       .querySelector("#create-visit-button")
       .classList.remove("button--hidden");
     document.querySelector(".main").classList.remove("main--hidden");
-
-    // instance('').then(res => console.log('cards', res));
-    cardList.render();
   }
 };
 
@@ -46,50 +41,42 @@ document.querySelector("#signup-button").addEventListener("click", () => {
 
 
 createCardBtn.addEventListener("click", () => {
-    let visit = null;
-  
-    const selectTypeDoctor = new SelectDoctor();
-  
-    selectTypeDoctor.selectDoctor.addEventListener("change", (e) => {
-      if (visit) {
-        visit.changeDoctor();
-      }
-  
-      const doctor = e.target.value;
-  
-      if (doctor === "cardiologist") {
-        visit = new VisitCardiologist("Кардіолог");
-        visit.render(".modal-select__body");
-  
-      } else if (doctor === "dentist") {
-        visit = new VisitDentist("Стоматолог");
-        visit.render(".modal-select__body");
-  
-      } else if (doctor === "therapist") {
-        visit = new VisitTherapist("Терапевт");
-        visit.render(".modal-select__body");
-      }
-    });
-  
-    const confirmUser = async (close) => {
-      const body = visit?.getValues();
-      const response = await postVisit(body);
-  
-      if (response) {
-        const { data } = response;
-        // await checkUserCards();
+  let visit = null;
 
-        cardList.renderCard(data);
+  const selectTypeDoctor = new SelectDoctor();
 
-        console.log(data);
-  
-        // new Card(data).render(CARDS_CONTAINER);
-        close();
-      }
-    };
-  
-    new ModalWindow(selectTypeDoctor.getFormElement(), "Створити візит", "Створити", confirmUser).render();
+  selectTypeDoctor.selectDoctor.addEventListener("change", (e) => {
+    if (visit) {
+      visit.changeDoctor();
+    }
+
+    const doctor = e.target.value;
+
+    if (doctor === "cardiologist") {
+      visit = new VisitCardiologist("Кардіолог");
+      visit.render(".modal-select__body");
+
+    } else if (doctor === "dentist") {
+      visit = new VisitDentist("Стоматолог");
+      visit.render(".modal-select__body");
+
+    } else if (doctor === "therapist") {
+      visit = new VisitTherapist("Терапевт");
+      visit.render(".modal-select__body");
+    }
   });
 
-  
-  
+  const confirmUser = async (close) => {
+    const body = visit?.getValues();
+    const response = await card.createCard(body);
+
+    if (response) {
+      await card?.renderCards();
+      close();
+    }
+  };
+
+  new ModalWindow(selectTypeDoctor.getFormElement(), "Створити візит", "Створити", confirmUser).render();
+});
+
+

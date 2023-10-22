@@ -19,6 +19,5 @@ const instance = axios.create({
     }
 );
   
-//nmp install axios -> import abo required
 
 

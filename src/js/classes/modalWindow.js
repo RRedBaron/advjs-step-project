@@ -33,25 +33,6 @@ class ModalWindow extends Modal {
 
         this.modalContentHeader.append(this.buttonClose);
 
-        //=============S
-        // this.buttonClose.innerHTML = ` 
-            // <svg
-            // class="login-modal__close-button"
-            // xmlns="http://www.w3.org/2000/svg"
-            // width="27"
-            // height="27"
-            // viewBox="0 0 27 27"
-            // fill="none"
-        //   >
-            // <path
-            //   d="M26 1L13.5 13.5M1 26L13.5 13.5M13.5 13.5L26 26L1 1"
-            //   stroke="black"
-            //   stroke-width="2"
-            // />
-        //   </svg>
-        // `
-        //============S
-
         this.modalContentBody.append(this.domElement);
         this.modalContentFooter.append(this.buttonConfirm);
         this.modalContent.append(this.modalContentHeader, this.modalContentBody, this.modalContentFooter);

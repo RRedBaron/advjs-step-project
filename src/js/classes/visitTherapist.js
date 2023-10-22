@@ -12,9 +12,6 @@ class VisitTherapist extends Visit {
 		`);                
     }
 
-    //<input type="number" name="age" id="age" class="modal-form__age" placeholder="Вік" required>
-
-
     validate() {
         this.inputAge = this.form.querySelector('.modal-form__age');
         if (this.inputAge.value > 110) {
