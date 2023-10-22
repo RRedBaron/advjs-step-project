@@ -4,7 +4,8 @@
   "description": "Advanced js module step project.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp build",
+    "start": "gulp build && gulp"
   },
   "keywords": [
     "js",
@@ -22,5 +23,10 @@
     "gulp-sass": "^5.1.0",
     "gulp-uglify-es": "^3.0.0",
     "sass": "^1.66.1"
+  },
+  "dependencies": {
+    "axios": "^1.5.1"
   }
 }
+
+

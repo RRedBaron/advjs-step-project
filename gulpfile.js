@@ -67,3 +67,8 @@ function browserSync() {
 
 exports.build = series(cleanDist, styles, scripts, images);
 exports.default = browserSync;
+
+// gulp build
+// gulp
+
+//npm start замість gulp

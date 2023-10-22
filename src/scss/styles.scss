@@ -1,11 +1,18 @@
 @import "reset";
 @import "variables";
 
+@import "./mixins";
+
 @import "./header/header";
 @import "./main/main";
 @import "./modals/loginmodal";
+@import "./modals/selectmodal";
+@import "./modals/selectmodal";
 
-.container {
+@import "./cards/createcards";
+@import "./cards/showcards";
+
+body {
   font-family: $default-font;
   background-image: url("../img/background-img.png");
   background-size: cover;
@@ -14,4 +21,9 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+}
+
+.container {
+  max-width: 1600px;
+  width: calc(100% - 40px);
 }

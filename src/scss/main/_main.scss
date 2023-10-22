@@ -1,19 +1,25 @@
 @import "../common/button";
 
 .main {
-  width: 1300px;
-
   &--hidden {
     display: none;
   }
 
   &__filter-cards {
     display: flex;
+    justify-content: space-between;
     align-items: flex-end;
-    gap: 50px;
+    gap: 70px;
     color: $white;
     font-size: 1.5rem;
     margin-top: 10px;
+    
+    @include tablet {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
 
     input {
       border: none;
@@ -41,7 +47,16 @@
   }
 
   &__filter-cards-wrapper {
-    width: 400px;
+    // width: 400px;
+    max-width: 400px; //S
+
+    @include tablet {
+      width: 400px;
+    }
+
+    @include mobile {
+      width: 320px;
+    }
   }
 
   &__cards-showcase {

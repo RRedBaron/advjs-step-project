@@ -130,43 +130,39 @@ class LoginModal extends Modal {
         "Перевірте введені дані";
       return;
     }
+
     fetch("https://ajax.test-danit.com/api/v2/cards/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
-    }).then((response) => {
-      if (response.status === 200) {
-        localStorage.setItem("token", response.text());
-        document.querySelector("#login-button").classList.add("button--hidden");
-        document
-          .querySelector("#signup-button")
-          .classList.add("button--hidden");
-        document
-          .querySelector("#logout-button")
-          .classList.remove("button--hidden");
-        document
-          .querySelector("#create-visit-button")
-          .classList.remove("button--hidden");
-        document.querySelector(".main").classList.remove("main--hidden");
-        this.close();
+      body: JSON.stringify({email, password}),
+    }).then(response => {
+      if (response.status !== 200) {
+        this.div.querySelector("#wrong-credentials").textContent =
+          "Невірний логін або пароль";
         return;
       }
-      this.div.querySelector("#wrong-credentials").textContent =
-        "Невірний логін або пароль";
-    });
-  }
-}
-
-class CreateVisitModal extends Modal {
-  constructor() {
-    super();
-  }
-
-  render() {
-    super.render();
-    this.div.querySelector(".login-modal__title").textContent =
-      "Записати на прийом";
+      return response.text()
+    })
+      .then((response) => {
+        if (response) {
+          localStorage.setItem("token", response); 
+           card = new CardRender(`https://ajax.test-danit.com/api/v2/cards/`, response);
+          card.renderCards();
+          document.querySelector("#login-button").classList.add("button--hidden");
+          document
+            .querySelector("#signup-button")
+            .classList.add("button--hidden");
+          document
+            .querySelector("#logout-button")
+            .classList.remove("button--hidden");
+          document
+            .querySelector("#create-visit-button")
+            .classList.remove("button--hidden");
+          document.querySelector(".main").classList.remove("main--hidden");
+          this.close();
+        }
+      });
   }
 }
