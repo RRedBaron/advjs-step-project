@@ -36,6 +36,7 @@ class CardRender extends Card {
           <p>${card.doctor}<p>
         <div>
         <button id = "extend-button-${card.id}" class="extend-button button button--green">Показати більше</button>
+        <button id = "update-button-${card.id}" class="extend-button button button--green">Редагувати</button>
         <hr />
         </div>
         `
@@ -50,6 +51,29 @@ class CardRender extends Card {
         extendButton.addEventListener('click', () => {
             this.extendCard(card, cardBlock);
         });
+
+        //--------
+// Кнопка Редагувати. При натисканні на неї замість текстового вмісту картки з'являється форма, де можна відредагувати введені поля. Така ж, як у модальному вікні під час створення картки
+        const updateButton = document.getElementById(`update-button-${card.id}`);
+        updateButton.addEventListener('click', () => {
+            let newData = { //тут треба замість риби викликати модальне вікно з відповідними полями
+                // 
+                title: 'Визит к кардиологу',
+                description: 'Новое описание визита',
+                doctor: 'Cardiologist',
+                bp: '24',
+                age: 23,
+                weight: 70
+            }
+      
+            this.updateCardById(card.id, newData)
+                .then(response => response.json())
+                .then(response => console.log(response))
+            // 
+        });
+        // 
+        // далі треба ре-рендер карти з оновленими значеннями?
+        // 
     }
 
     extendCard(card, cardBlock) {
@@ -111,5 +135,5 @@ if (token) {
     card = new CardRender(`https://ajax.test-danit.com/api/v2/cards/`, token);
     (async () => {
         await card.renderCards();
-        })();
+    })();
 }

@@ -54,9 +54,9 @@
       width: 400px;
     }
 
-    @include mobile {
-      width: 320px;
-    }
+    // @include mobile {
+      // width: 320px;
+    // }
   }
 
   &__cards-showcase {
