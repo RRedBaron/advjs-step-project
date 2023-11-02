@@ -31,13 +31,14 @@ class Visit extends Form {
         this.warning.style.color = 'red';
 
         this.form.prepend(this.selectStatus);
-        this.selectStatus.value = this.card.status || ''; //
+        this.selectStatus.value = this.card.status || ''; 
+        this.selectPriority.value = this.card.priority || '';
 
         this.form.append(this.selectPriority);
         this.form.insertAdjacentHTML('beforeend', ` 
-            <input type="text" name="fullName" id="fullName" class="modal-select__select" placeholder="ПІБ *" required>
-            <input type="text" name="purpose" id="purpose" class="modal-select__select" placeholder="Мета візиту *" required>
-            <textarea type="text" name="descriptionVisit" id="descriptionVisit" class="modal-select__select" placeholder="Короткий опис візиту" rows="5"></textarea>`)
+            <input type="text" name="fullName" id="fullName" value="${this.card.fullName || ''}" class="modal-select__select" placeholder="ПІБ *" required>
+            <input type="text" name="purpose" id="purpose" value="${this.card.purpose || ''}"class="modal-select__select" placeholder="Мета візиту *" required>
+            <textarea type="text" name="descriptionVisit" id="descriptionVisit" class="modal-select__select" placeholder="Короткий опис візиту" rows="5">${this.card.descriptionVisit || ''}</textarea>`)
     }
     getValues() {
 

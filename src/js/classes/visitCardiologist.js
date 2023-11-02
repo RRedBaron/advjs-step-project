@@ -10,9 +10,9 @@ class VisitCardiologist extends Visit {
         super.createElements();
 
         this.form.insertAdjacentHTML('beforeend', ` 
-			<input type="text" name="pressure" id="pressure" class="modal-select__select pressure" placeholder="Звичайний артеріальний тиск у форматі 70/110 *" required>
-			<input type="number" name="weight" id="weight" class="modal-select__select" placeholder="Індекс маси тіла *" required>
-			<input type="text" name="diseases" id="diseases" class="modal-select__select" placeholder="Перенесені захворювання серцево-судинної системи *" required>
+			<input type="text" name="pressure" id="pressure" value="${this.card.pressure || ''}"class="modal-select__select pressure" placeholder="Звичайний артеріальний тиск у форматі 70/110 *" required>
+			<input type="number" name="weight" id="weight" value="${this.card.weight || ''}" class="modal-select__select" placeholder="Індекс маси тіла *" required>
+			<input type="text" name="diseases" id="diseases" value="${this.card.diseases || ''}"class="modal-select__select" placeholder="Перенесені захворювання серцево-судинної системи *" required>
 			<input type="number" name="age" id="age" value="${this.card.age || ''}" class="modal-select__select age" placeholder="Вік *" required>
 		`);
     }

@@ -55,25 +55,25 @@ class CardRender extends Card {
         const updateButton = document.getElementById(`update-button-${card.id}`);
         updateButton.addEventListener('click', () => {
 
-            let visit;
+            let updatedVisit;
 
             const { doctor } = card;
             if (doctor === "Кардіолог") {
-                visit = new VisitCardiologist("Кардіолог", card);
+                updatedVisit = new VisitCardiologist("Кардіолог", card);
             } else if (doctor === "Стоматолог") {
-                visit = new VisitDentist("Стоматолог", card);
+                updatedVisit = new VisitDentist("Стоматолог", card);
             } else if (doctor === "Терапевт") {
-                visit = new VisitTherapist("Терапевт", card);
+                updatedVisit = new VisitTherapist("Терапевт", card);
             }
 
             const modal = new ModalWindow('', 'Редагувати візит', 'Зберегти', () => {
-                const newData = visit.getValues();
+                const updateData = updatedVisit.getValues();
 
-                if(!newData){
+                if (!updateData) {
                     return
                 }
 
-                this.updateCardById(card.id, newData)
+                this.updateCardById(card.id, updateData)
                     .then(response => response.json())
                     .then(response => console.log(response))
                     .finally(() => {
@@ -87,9 +87,9 @@ class CardRender extends Card {
 
             console.log(card);
 
-            visit.render(".modal-select__body");
+            updatedVisit.render(".modal-select__body");
         });
-    
+
 
 
     }
@@ -136,7 +136,6 @@ class CardRender extends Card {
                     <p>Приоритет: ${card.priority}<p>
                     <p>Ціль візиту: ${card.purpose}<p>
                     <p>Статус візиту: ${card.status}<p>
-                    <p>Дата останнього візиту: ${card.date}<p>
                 </div>
                 `;
                 break;
