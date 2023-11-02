@@ -1,6 +1,6 @@
 class VisitTherapist extends Visit {
-	constructor (doctor) {
-        super(doctor);
+	constructor (doctor, card = {}) {
+        super(doctor, card);
         this.inputAge = null;
     }
 
@@ -8,7 +8,7 @@ class VisitTherapist extends Visit {
         super.createElements();
     
         this.form.insertAdjacentHTML('beforeend', `
-			<input type="number" name="age" id="age" class="modal-form__age" placeholder="Вік *" required>
+			<input type="number" name="age" id="age" value="${this.card.age || ''}" class="modal-form__age" placeholder="Вік *" required>
 		`);                
     }
 

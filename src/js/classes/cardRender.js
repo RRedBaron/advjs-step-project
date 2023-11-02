@@ -52,28 +52,46 @@ class CardRender extends Card {
             this.extendCard(card, cardBlock);
         });
 
-        //--------
-// Кнопка Редагувати. При натисканні на неї замість текстового вмісту картки з'являється форма, де можна відредагувати введені поля. Така ж, як у модальному вікні під час створення картки
         const updateButton = document.getElementById(`update-button-${card.id}`);
         updateButton.addEventListener('click', () => {
-            let newData = { //тут треба замість риби викликати модальне вікно з відповідними полями
-                // 
-                title: 'Визит к кардиологу',
-                description: 'Новое описание визита',
-                doctor: 'Cardiologist',
-                bp: '24',
-                age: 23,
-                weight: 70
+
+            let visit;
+
+            const { doctor } = card;
+            if (doctor === "Кардіолог") {
+                visit = new VisitCardiologist("Кардіолог", card);
+            } else if (doctor === "Стоматолог") {
+                visit = new VisitDentist("Стоматолог", card);
+            } else if (doctor === "Терапевт") {
+                visit = new VisitTherapist("Терапевт", card);
             }
-      
-            this.updateCardById(card.id, newData)
-                .then(response => response.json())
-                .then(response => console.log(response))
-            // 
+
+            const modal = new ModalWindow('', 'Редагувати візит', 'Зберегти', () => {
+                const newData = visit.getValues();
+
+                if(!newData){
+                    return
+                }
+
+                this.updateCardById(card.id, newData)
+                    .then(response => response.json())
+                    .then(response => console.log(response))
+                    .finally(() => {
+                        this.renderCards();
+                        modal.close();
+                    })
+            });
+
+            modal.render();
+            modal.modalContentBody.innerHTML = '';
+
+            console.log(card);
+
+            visit.render(".modal-select__body");
         });
-        // 
-        // далі треба ре-рендер карти з оновленими значеннями?
-        // 
+    
+
+
     }
 
     extendCard(card, cardBlock) {

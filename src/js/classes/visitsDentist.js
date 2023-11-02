@@ -1,6 +1,6 @@
 class VisitDentist extends Visit {
-	constructor (doctor) {
-        super(doctor);
+	constructor (doctor, card = {}) {
+        super(doctor, card);
     }
 
     createElements () {
