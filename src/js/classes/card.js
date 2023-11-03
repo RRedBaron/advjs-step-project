@@ -32,7 +32,7 @@ class Card {
     }
 
     async updateCardById(cardId, data) {
-        return await fetch(`${this.url}${cardId}`, { //не треба вже тут await при повертанні проміса?
+        return await fetch(`${this.url}${cardId}`, { 
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${this.token}`
