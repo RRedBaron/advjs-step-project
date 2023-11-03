@@ -147,9 +147,9 @@ class LoginModal extends Modal {
     })
       .then((response) => {
         if (response) {
-          localStorage.setItem("token", response); 
+          localStorage.setItem("token", response);
            card = new CardRender(`https://ajax.test-danit.com/api/v2/cards/`, response);
-          card.renderCards();
+          card.getAllCards();
           document.querySelector("#login-button").classList.add("button--hidden");
           document
             .querySelector("#signup-button")

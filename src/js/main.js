@@ -72,7 +72,7 @@ createCardBtn.addEventListener("click", () => {
     const response = await card.createCard(body);
 
     if (response) {
-      await card?.renderCards();
+      await card?.getAllCards();
       close();
     }
   };

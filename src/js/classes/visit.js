@@ -20,18 +20,18 @@ class Visit extends Form {
         this.selectStatus.id = 'status';
 
         this.selectPriority.innerHTML = `<option selected value="">Терміновість</option>
-            <option value="Звичайна">Звичайна</option>
-            <option value="Пріоритетна">Пріоритетна</option>
-            <option value="Невідкладна">Невідкладна</option>`;
+            <option value="regular">Звичайна</option>
+            <option value="prioritized">Пріоритетна</option>
+            <option value="urgent">Невідкладна</option>`;
         this.selectStatus.innerHTML = `<option value="">Cтатуc візиту</option>
-            <option value="Запланований">Запланований</option>                   
-            <option value="Візит відбувся">Візит відбувся</option>`;
+            <option value="planned">Запланований</option>                   
+            <option value="done">Візит відбувся</option>`;
 
         this.warning.innerText = "Увага: форма містить поля обов'язкові для заповнення";
         this.warning.style.color = 'red';
 
         this.form.prepend(this.selectStatus);
-        this.selectStatus.value = this.card.status || ''; 
+        this.selectStatus.value = this.card.status || '';
         this.selectPriority.value = this.card.priority || '';
 
         this.form.append(this.selectPriority);
