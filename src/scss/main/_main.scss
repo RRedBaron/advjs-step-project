@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 70px;
+    gap: 50px;
     color: $white;
     font-size: 1.5rem;
     margin-top: 10px;
@@ -47,16 +47,13 @@
   }
 
   &__filter-cards-wrapper {
-    // width: 400px;
-    max-width: 400px; //S
+     width: calc(33% - 33px);
+    max-width: 600px; //S
 
     @include tablet {
-      width: 400px;
+      width: 100%;
     }
 
-    // @include mobile {
-      // width: 320px;
-    // }
   }
 
   &__cards-showcase {
@@ -67,3 +64,11 @@
     margin-top: 30px;
   }
 }
+
+//.button--red{
+  // position: absolute;
+  // right: 20px;
+  // top: 120px;  
+  //margin-top: -20px;
+ // display:none;
+ //}

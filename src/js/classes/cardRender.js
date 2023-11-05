@@ -64,10 +64,9 @@ class CardRender extends Card {
         </div>
         <div class="showcard__content">
           <p>${card.doctor}<p>
-        <div>
+        <div class="showcard__button-group">
         <button id = "extend-button-${card.id}" class="extend-button button button--green">Показати більше</button>
         <button id = "update-button-${card.id}" class="extend-button button button--green">Редагувати</button>
-        <hr />
         </div>
         `
     document.getElementById("card-wrapper").appendChild(cardBlock);
@@ -87,7 +86,7 @@ class CardRender extends Card {
 
       let updatedVisit;
 
-      const {doctor} = card;
+      const { doctor } = card;
       if (doctor === "Кардіолог") {
         updatedVisit = new VisitCardiologist("Кардіолог", card);
       } else if (doctor === "Стоматолог") {
@@ -132,11 +131,20 @@ class CardRender extends Card {
     extendButton.parentNode.removeChild(extendButton);
   }
 
+
+  // TODO: 
+  // const showLessButton = document.queryselector('#showless-button-${card.id}');
+  // showLessCard() {}
+
+
   extendedCard(card) {
     let newHtml;
+
+    //TODO: priority and status display as a cyrylic text content of selects values
+
     switch (card.doctor) {
       case 'Кардіолог':
-        newHtml = `<div>
+        newHtml = `<div class="showcard__expanded">
                         <p>Вік: ${card.age}<p>
                         <p>Опис: ${card.descriptionVisit}<p>
                         <p>Анамнез: ${card.diseases}<p>
@@ -144,28 +152,31 @@ class CardRender extends Card {
                         <p>Приоритет: ${card.priority}<p>
                         <p>Ціль візиту: ${card.purpose}<p>
                         <p>Статус візиту: ${card.status}<p>
-                        <p>Індекс маси тіла: ${card.weight}<p>
+                        <p>Індекс маси тіла: ${card.weight}<p>                        
                 </div>
+                <button id = "showless-button-${card.id}" class="showless-button button button--green">Приховати</button>
                 `;
         break;
       case 'Стоматолог':
-        newHtml = ` <div>
+        newHtml = ` <div class="showcard__expanded">
                         <p>Опис: ${card.descriptionVisit}<p>
                         <p>Приоритет: ${card.priority}<p>
                         <p>Ціль візиту: ${card.purpose}<p>
                         <p>Статус візиту: ${card.status}<p>
                         <p>Дата останнього візиту: ${card.date}<p>
                     </div>
+                    <button id = "showless-button-${card.id}" class="showless-button button button--green">Приховати</button>
                 `;
         break;
       case 'Терапевт':
-        newHtml = ` <div>
+        newHtml = ` <div class="showcard__expanded">
                     <p>Вік: ${card.age}<p>
                     <p>Опис: ${card.descriptionVisit}<p>
                     <p>Приоритет: ${card.priority}<p>
                     <p>Ціль візиту: ${card.purpose}<p>
                     <p>Статус візиту: ${card.status}<p>
                 </div>
+                <button id = "showless-button-${card.id}" class="showless-button button button--green">Приховати</button>
                 `;
         break;
     }
