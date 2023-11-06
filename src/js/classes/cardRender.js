@@ -63,12 +63,14 @@ class CardRender extends Card {
             </button> 
         </div>
         <div class="showcard__content">
-          <p>${card.doctor}<p>
-        <div class="showcard__button-group">
-        <button id = "extend-button-${card.id}" class="extend-button button button--green">Показати більше</button>
-        <button id = "update-button-${card.id}" class="extend-button button button--green">Редагувати</button>
+          <p>Візит до ${card.doctor}а<p>
+          <div class="showcard__button-group">
+            <button id = "update-button-${card.id}" class="extend-button button button--green">Редагувати</button>
+            <button id = "extend-button-${card.id}" class="extend-button button button--green">Показати більше</button>
+          </div>
         </div>
         `
+
     document.getElementById("card-wrapper").appendChild(cardBlock);
     document.getElementById(`close-button-${card.id}`).addEventListener('click', () => {
       this.deleteCardById(card.id).then(() => {
@@ -78,7 +80,13 @@ class CardRender extends Card {
 
     const extendButton = document.getElementById(`extend-button-${card.id}`);
     extendButton.addEventListener('click', () => {
-      this.extendCard(card, cardBlock);
+      extendedDiv.classList.toggle('hide');
+
+      if (extendButton.innerText === 'Показати більше') {
+        extendButton.innerText = 'Приховати';
+      } else {
+        extendButton.innerText = 'Показати більше';
+      }
     });
 
     const updateButton = document.getElementById(`update-button-${card.id}`);
@@ -119,64 +127,48 @@ class CardRender extends Card {
       updatedVisit.render(".modal-select__body");
     });
 
-
-  }
-
-  extendCard(card, cardBlock) {
     const extendedContent = this.extendedCard(card);
     const extendedDiv = document.createElement('div');
+    extendedDiv.classList.add('hide');
     extendedDiv.innerHTML = extendedContent;
     cardBlock.appendChild(extendedDiv);
-    const extendButton = document.getElementById(`extend-button-${card.id}`);
-    extendButton.parentNode.removeChild(extendButton);
+
   }
-
-
-  // TODO: 
-  // const showLessButton = document.queryselector('#showless-button-${card.id}');
-  // showLessCard() {}
-
 
   extendedCard(card) {
     let newHtml;
-
-    //TODO: priority and status display as a cyrylic text content of selects values
-
     switch (card.doctor) {
       case 'Кардіолог':
         newHtml = `<div class="showcard__expanded">
-                        <p>Вік: ${card.age}<p>
-                        <p>Опис: ${card.descriptionVisit}<p>
-                        <p>Анамнез: ${card.diseases}<p>
-                        <p>Тиск: ${card.pressure}<p>
-                        <p>Приоритет: ${card.priority}<p>
-                        <p>Ціль візиту: ${card.purpose}<p>
-                        <p>Статус візиту: ${card.status}<p>
-                        <p>Індекс маси тіла: ${card.weight}<p>                        
+                      <p>Терміновість: ${card.priority}<p>
+                      <p>Статус візиту: ${card.status}<p>
+                      <p>Мета візиту: ${card.purpose}<p>
+                      <p>Короткий опис візиту: ${card.descriptionVisit}<p>
+                      <p>Вік: ${card.age}<p>
+                      <p>Тиск: ${card.pressure}<p>
+                      <p>Індекс маси тіла: ${card.weight}<p>  
+                      <p>Анамнез: ${card.diseases}<p>                      
                 </div>
-                <button id = "showless-button-${card.id}" class="showless-button button button--green">Приховати</button>
                 `;
         break;
       case 'Стоматолог':
         newHtml = ` <div class="showcard__expanded">
-                        <p>Опис: ${card.descriptionVisit}<p>
-                        <p>Приоритет: ${card.priority}<p>
-                        <p>Ціль візиту: ${card.purpose}<p>
+                        <p>Терміновість: ${card.priority}<p>
                         <p>Статус візиту: ${card.status}<p>
+                        <p>Мета візиту: ${card.purpose}<p>
+                        <p>Короткий опис візиту: ${card.descriptionVisit}<p>
                         <p>Дата останнього візиту: ${card.date}<p>
                     </div>
-                    <button id = "showless-button-${card.id}" class="showless-button button button--green">Приховати</button>
                 `;
         break;
       case 'Терапевт':
         newHtml = ` <div class="showcard__expanded">
-                    <p>Вік: ${card.age}<p>
-                    <p>Опис: ${card.descriptionVisit}<p>
-                    <p>Приоритет: ${card.priority}<p>
-                    <p>Ціль візиту: ${card.purpose}<p>
-                    <p>Статус візиту: ${card.status}<p>
+                      <p>Терміновість: ${card.priority}<p>
+                      <p>Статус візиту: ${card.status}<p>
+                      <p>Мета візиту: ${card.purpose}<p>
+                      <p>Короткий опис візиту: ${card.descriptionVisit}<p>
+                      <p>Вік: ${card.age}<p>
                 </div>
-                <button id = "showless-button-${card.id}" class="showless-button button button--green">Приховати</button>
                 `;
         break;
     }

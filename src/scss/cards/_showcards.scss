@@ -73,25 +73,19 @@
         padding: 0 30px 30px 30px;
 
         p {
-
             border-bottom: 2px solid rgba(0, 0, 0, 0.25);
-
             color: #000;
             font-family: Montserrat;
             font-size: 18px;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
-
-
         }
     }
-
 }
 
 .card-item {
     display: flex;
-
     //background-color: rgb(217, 253, 240);
     background-color: white;
     border-radius: 10px;
@@ -105,20 +99,11 @@
         max-width: 600px;
         width: 100%;
     }
-
-
-
-
-
     p {
         line-height: 35px;
     }
-
 }
 
-.showless-button {
-    margin: 0px 30px 30px;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
+.hide {
+    display: none;
 }
