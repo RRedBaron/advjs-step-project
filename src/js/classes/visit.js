@@ -11,8 +11,6 @@ class Visit extends Form {
     createElements() {
         super.createElements();
 
-        console.log('test', this.card);
-
         this.form.className = 'modal__form';
         this.selectPriority.className = 'modal-select__select';
         this.selectPriority.id = 'priority';
@@ -26,15 +24,6 @@ class Visit extends Form {
         this.selectStatus.innerHTML = `<option value="">Cтатуc візиту</option>
             <option value="Запланований">Запланований</option>                   
             <option value="Візит відбувся">Візит відбувся</option>`;
-
-        // values in English
-        // this.selectPriority.innerHTML = `<option selected value="">Терміновість</option>
-            // <option value="regular">Звичайна</option>
-            // <option value="prioritized">Пріоритетна</option>
-            // <option value="urgent">Невідкладна</option>`;
-        // this.selectStatus.innerHTML = `<option value="">Cтатуc візиту</option>
-            // <option value="planned">Запланований</option>                   
-            // <option value="done">Візит відбувся</option>`;
 
         this.warning.innerText = "Увага: форма містить поля обов'язкові для заповнення";
         this.warning.style.color = 'red';
@@ -62,8 +51,6 @@ class Visit extends Form {
         body[name] = value;
 
         body.doctor = this.doctor;
-
-        console.log(body);
 
         if (this.form.querySelector('.empty')) {
             this.form.append(this.warning);

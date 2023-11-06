@@ -112,7 +112,7 @@ class CardRender extends Card {
 
         this.updateCardById(card.id, updateData)
           .then(response => response.json())
-          .then(response => console.log(response))
+          // .then(response => console.log(response))
           .finally(() => {
             this.getAllCards();
             modal.close();
@@ -121,8 +121,6 @@ class CardRender extends Card {
 
       modal.render();
       modal.modalContentBody.innerHTML = '';
-
-      console.log(card);
 
       updatedVisit.render(".modal-select__body");
     });

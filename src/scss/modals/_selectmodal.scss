@@ -1,8 +1,4 @@
 .modal-select {
-    // height: 100vh;
-    // max-height: 100%;
-    // overflow-y: scroll;
-
 
     &__background {
         position: absolute;
@@ -19,16 +15,13 @@
 
     &__card {
         position: absolute;
-        //margin: auto;
         top: 50%;
         left: 50%;
         transform: translateY(-50%) translateX(-50%);
 
 
         border-radius: 20px;
-        //padding: 50px 30px;
         background-color: #fff;
-        //  position: relative;
         width: 100%;
         z-index: 2;
         max-width: 700px;
@@ -40,7 +33,6 @@
 
     &__btn-close {
         width: 20px;
-        // height: 20px; 
         cursor: pointer;
         background-color: #fff;
         border: none;
@@ -50,15 +42,6 @@
         padding-right: 20px;
     }
  
- 
- 
- 
- 
- 
- 
- 
- 
-
     &__header {
         display: flex;
         justify-content: space-between;
