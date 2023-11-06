@@ -1,103 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="dist/css/style.min.css" />
-    <title>HelsiOnMinimalkah</title>
-    <script type="module" src="dist/js/script.min.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <header class="header">
-        <nav class="header__navbar">
-          <a href="#">
-            <img class="header__logo" src="dist/img/Helsi_on_maximalkah.png" />
-          </a>
-          <ul class="header__buttons">
-            <li>
-              <button
-                type="button"
-                class="button button--white"
-                id="signup-button"
-              >
-                Реєстрація
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                class="button button--green"
-                id="login-button"
-              >
-                Вхід в кабінет
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                class="button button--white button--hidden"
-                id="create-visit-button"
-              >
-                Створити візит
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                class="button button--green button--hidden"
-                id="logout-button"
-              >
-                Вийти
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main class="main main--hidden">
-        <div class="main__filter-cards">
-          <div class="main__filter-cards-wrapper">
-            <p class="main__label">Пошук за інформацією</p>
-            <input
-              class="main__input"
-              type="text"
-              id="search"
-              placeholder="Пошук"
-            />
-          </div>
-          <div class="main__filter-cards-wrapper">
-            <p class="main__label">Пріорітетність візиту</p>
-            <select id="urgency-select">
-              <option value="" selected disabled>- Оберіть опцію -</option>
-              <option value="high">High</option>
-              <option value="medium">Low</option>
-              <option value="low">Low</option>
-            </select>
-          </div>
-          <div class="main__filter-cards-wrapper">
-            <p class="main__label">Статус візиту</p>
-            <select id="status-select">
-              <option value="" selected disabled>- Оберіть опцію -</option>
-              <option value="high">Open</option>
-              <option value="medium">Done</option>
-            </select>
-          </div>
-          <button class="button button--red" id="clear-filters-button">
-            Скинути
-          </button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="dist/css/style.min.css" />
+  <title>HelsiOnMinimalkah</title>
+  <script type="module" src="dist/js/script.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <nav class="header__navbar">
+        <a href="#">
+          <img class="header__logo" src="dist/img/Helsi_on_maximalkah.png" />
+        </a>
+        <ul class="header__buttons">
+          <li>
+            <button type="button" class="button button--white" id="signup-button">
+              Реєстрація
+            </button>
+          </li>
+          <li>
+            <button type="button" class="button button--green" id="login-button">
+              Вхід в кабінет
+            </button>
+          </li>
+          <li>
+            <button type="button" class="button button--white button--hidden" id="create-visit-button">
+              Створити візит
+            </button>
+          </li>
+          <li>
+            <button type="button" class="button button--green button--hidden" id="logout-button">
+              Вийти
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main main--hidden">
+      <form class="main__filter-cards" id="search-form">
+        <div class="main__filter-cards-wrapper">
+          <label for="search" class="main__label">Пошук за інформацією</label>
+          <input class="main__input" type="text" id="search" placeholder="Пошук" name="search" />
         </div>
-        <div class="main__cards-showcase">
-          <div class="main__card" id="card-wrapper"></div>
+        <div class="main__filter-cards-wrapper">
+          <label for="urgency-select" class="main__label">Пріорітетність візиту</label>
+          <select name="urgency" id="urgency-select">
+            <option value="" selected disabled>- Оберіть опцію -</option>
+            <option value="Звичайна">Звичайна</option>
+            <option value="Пріоритетна">Пріоритетна</option>
+            <option value="Невідкладна">Невідкладна</option>
+          </select>
         </div>
-      </main>
-    </div>
-    
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  </body>
+        <div class="main__filter-cards-wrapper">
+          <label for="status-select" class="main__label">Статус візиту</label>
+          <select name="status" id="status-select">
+            <option value="" selected disabled>- Оберіть опцію -</option>
+            <option value="Запланований">Запланований</option>
+            <option value="Візит відбувся">Візит відбувся</option>
+          </select>
+        </div>
+        <button type="reset" class="button button--red" id="clear-filters-button">
+          Скинути
+        </button>
+      </form>
+      <div class="main__cards-showcase">
+        <div class="main__card" id="card-wrapper"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+
 </html>

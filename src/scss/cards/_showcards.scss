@@ -1,14 +1,15 @@
 .main__cards-showcase {
     display: flex;
-    padding: 20px;
-    background-color: $modal-bg;
     border-radius: 5px;
 }
+
 .main__card {
     display: flex;
-    gap: 20px;
+    gap: 50px;
     width: 100%;
     flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start
 }
 
 .showcard {
@@ -20,25 +21,85 @@
     &__header {
         display: flex;
         justify-content: space-between;
-        padding: 14px;
+        padding: 30px;
+        border-bottom: 2px solid #68C0AE;
+        color: #68C0AE;
+        font-family: Montserrat;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+
+        button {
+            background: transparent;
+            border: none;
+        }
     }
 
     &__content {
         display: flex;
-        //margin-top: 20px;
         gap: 20px;
         flex-direction: column;
+        padding: 30px;
+
+        p {
+            color: #000;
+            font-family: Montserrat;
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            text-align: center;
+        }
+    }
+
+    &__button-group {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+
+        .extend-button {
+            width: 100%;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+        }
+    }
+
+    &__expanded {
+        padding: 0 30px 30px 30px;
+
+        p {
+            border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+            color: #000;
+            font-family: Montserrat;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
     }
 }
 
-.card-item{
+.card-item {
     display: flex;
-    border-radius: 5px;
-    background-color: rgb(217, 253, 240);
-    padding: 16px;
-    width: calc((100% - 40px)/3);
-    min-width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    border: 4px solid #68C0AE;
+    width: calc(33% - 33px);
+    min-width: 350px;
+    height: auto;
     flex-direction: column;
 
+    @include tablet {
+        max-width: 600px;
+        width: 100%;
+    }
+    p {
+        line-height: 35px;
+    }
+}
 
+.hide {
+    display: none;
 }

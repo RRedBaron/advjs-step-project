@@ -32,7 +32,7 @@ class Card {
     }
 
     async updateCardById(cardId, data) {
-        return await fetch(`${this.url}${cardId}`, {
+        return await fetch(`${this.url}${cardId}`, { 
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${this.token}`

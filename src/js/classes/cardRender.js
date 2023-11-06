@@ -1,17 +1,47 @@
+const isIncludes = (text, search) => {
+  return text.toLowerCase().includes(search.toLowerCase());
+}
+
 class CardRender extends Card {
-    async renderCards() {
-        document.getElementById("card-wrapper").innerHTML = "";
-        const res = await this.getCardsData();
-        res.forEach(card => {
-            this.renderSingleCard(card);
-        });
-    }
+  cards = [];
+  filteredCards = [];
 
-    renderSingleCard(card) {
+  renderCards(cards) {
+    document.getElementById("card-wrapper").innerHTML = "";
+    cards.forEach(card => {
+      this.renderSingleCard(card);
+    });
+  }
 
-        const cardBlock = document.createElement("div");
-        cardBlock.classList.add("card-item");
-        cardBlock.innerHTML = `
+  async getAllCards() {
+    this.cards = await this.getCardsData();
+    this.renderCards(this.cards);
+  }
+
+  filterCards(filters) {
+    this.filteredCards = this.cards
+      .filter(card => {
+        return isIncludes(card.fullName, filters?.search) || isIncludes(card.descriptionVisit, filters?.search);
+      })
+      .filter(card => {
+        return !filters.status || card.status === filters.status
+      })
+      .filter(card => {
+        return !filters.urgency || card.priority === filters.urgency
+      });
+
+    this.renderCards(this.filteredCards);
+  }
+
+  resetFilters() {
+    this.filteredCards = this.cards;
+    this.renderCards(this.filteredCards);
+  }
+
+  renderSingleCard(card) {
+    const cardBlock = document.createElement("div");
+    cardBlock.classList.add("card-item");
+    cardBlock.innerHTML = `
         <div class="showcard">
           <div class="showcard__header">
            <h2>${card.fullName}</h2>
@@ -33,74 +63,115 @@ class CardRender extends Card {
             </button> 
         </div>
         <div class="showcard__content">
-          <p>${card.doctor}<p>
-        <div>
-        <button id = "extend-button-${card.id}" class="extend-button button button--green">Показати більше</button>
-        <hr />
+          <p>Візит до ${card.doctor}а<p>
+          <div class="showcard__button-group">
+            <button id = "update-button-${card.id}" class="extend-button button button--green">Редагувати</button>
+            <button id = "extend-button-${card.id}" class="extend-button button button--green">Показати більше</button>
+          </div>
         </div>
         `
-        document.getElementById("card-wrapper").appendChild(cardBlock);
-        document.getElementById(`close-button-${card.id}`).addEventListener('click', () => {
-            this.deleteCardById(card.id).then(() => {
-                this.renderCards()
-            });
-        })
 
-        const extendButton = document.getElementById(`extend-button-${card.id}`);
-        extendButton.addEventListener('click', () => {
-            this.extendCard(card, cardBlock);
-        });
-    }
+    document.getElementById("card-wrapper").appendChild(cardBlock);
+    document.getElementById(`close-button-${card.id}`).addEventListener('click', () => {
+      this.deleteCardById(card.id).then(() => {
+        this.getAllCards()
+      });
+    })
 
-    extendCard(card, cardBlock) {
-        const extendedContent = this.extendedCard(card);
-        const extendedDiv = document.createElement('div');
-        extendedDiv.innerHTML = extendedContent;
-        cardBlock.appendChild(extendedDiv);
-        const extendButton = document.getElementById(`extend-button-${card.id}`);
-        extendButton.parentNode.removeChild(extendButton);
-    }
+    const extendButton = document.getElementById(`extend-button-${card.id}`);
+    extendButton.addEventListener('click', () => {
+      extendedDiv.classList.toggle('hide');
 
-    extendedCard(card) {
-        let newHtml;
-        switch (card.doctor) {
-            case 'Кардіолог':
-                newHtml = `<div>
-                        <p>Вік: ${card.age}<p>
-                        <p>Опис: ${card.descriptionVisit}<p>
-                        <p>Анамнез: ${card.diseases}<p>
-                        <p>Тиск: ${card.pressure}<p>
-                        <p>Приоритет: ${card.priority}<p>
-                        <p>Ціль візиту: ${card.purpose}<p>
-                        <p>Статус візиту: ${card.status}<p>
-                        <p>Індекс маси тіла: ${card.weight}<p>
+      if (extendButton.innerText === 'Показати більше') {
+        extendButton.innerText = 'Приховати';
+      } else {
+        extendButton.innerText = 'Показати більше';
+      }
+    });
+
+    const updateButton = document.getElementById(`update-button-${card.id}`);
+    updateButton.addEventListener('click', () => {
+
+      let updatedVisit;
+
+      const { doctor } = card;
+      if (doctor === "Кардіолог") {
+        updatedVisit = new VisitCardiologist("Кардіолог", card);
+      } else if (doctor === "Стоматолог") {
+        updatedVisit = new VisitDentist("Стоматолог", card);
+      } else if (doctor === "Терапевт") {
+        updatedVisit = new VisitTherapist("Терапевт", card);
+      }
+
+      const modal = new ModalWindow('', 'Редагувати візит', 'Зберегти', () => {
+        const updateData = updatedVisit.getValues();
+
+        if (!updateData) {
+          return
+        }
+
+        this.updateCardById(card.id, updateData)
+          .then(response => response.json())
+          // .then(response => console.log(response))
+          .finally(() => {
+            this.getAllCards();
+            modal.close();
+          })
+      });
+
+      modal.render();
+      modal.modalContentBody.innerHTML = '';
+
+      updatedVisit.render(".modal-select__body");
+    });
+
+    const extendedContent = this.extendedCard(card);
+    const extendedDiv = document.createElement('div');
+    extendedDiv.classList.add('hide');
+    extendedDiv.innerHTML = extendedContent;
+    cardBlock.appendChild(extendedDiv);
+
+  }
+
+  extendedCard(card) {
+    let newHtml;
+    switch (card.doctor) {
+      case 'Кардіолог':
+        newHtml = `<div class="showcard__expanded">
+                      <p>Терміновість: ${card.priority}<p>
+                      <p>Статус візиту: ${card.status}<p>
+                      <p>Мета візиту: ${card.purpose}<p>
+                      <p>Короткий опис візиту: ${card.descriptionVisit}<p>
+                      <p>Вік: ${card.age}<p>
+                      <p>Тиск: ${card.pressure}<p>
+                      <p>Індекс маси тіла: ${card.weight}<p>  
+                      <p>Анамнез: ${card.diseases}<p>                      
                 </div>
                 `;
-                break;
-            case 'Стоматолог':
-                newHtml = ` <div>
-                        <p>Опис: ${card.descriptionVisit}<p>
-                        <p>Приоритет: ${card.priority}<p>
-                        <p>Ціль візиту: ${card.purpose}<p>
+        break;
+      case 'Стоматолог':
+        newHtml = ` <div class="showcard__expanded">
+                        <p>Терміновість: ${card.priority}<p>
                         <p>Статус візиту: ${card.status}<p>
+                        <p>Мета візиту: ${card.purpose}<p>
+                        <p>Короткий опис візиту: ${card.descriptionVisit}<p>
                         <p>Дата останнього візиту: ${card.date}<p>
                     </div>
                 `;
-                break;
-            case 'Терапевт':
-                newHtml = ` <div>
-                    <p>Вік: ${card.age}<p>
-                    <p>Опис: ${card.descriptionVisit}<p>
-                    <p>Приоритет: ${card.priority}<p>
-                    <p>Ціль візиту: ${card.purpose}<p>
-                    <p>Статус візиту: ${card.status}<p>
-                    <p>Дата останнього візиту: ${card.date}<p>
+        break;
+      case 'Терапевт':
+        newHtml = ` <div class="showcard__expanded">
+                      <p>Терміновість: ${card.priority}<p>
+                      <p>Статус візиту: ${card.status}<p>
+                      <p>Мета візиту: ${card.purpose}<p>
+                      <p>Короткий опис візиту: ${card.descriptionVisit}<p>
+                      <p>Вік: ${card.age}<p>
                 </div>
                 `;
-                break;
-        }
-        return newHtml;
+        break;
     }
+    return newHtml;
+  }
 }
 
 let card;
@@ -108,8 +179,8 @@ let card;
 const token = localStorage.getItem('token');
 
 if (token) {
-    card = new CardRender(`https://ajax.test-danit.com/api/v2/cards/`, token);
-    (async () => {
-        await card.renderCards();
-        })();
+  card = new CardRender(`https://ajax.test-danit.com/api/v2/cards/`, token);
+  (async () => {
+    await card.getAllCards();
+  })();
 }

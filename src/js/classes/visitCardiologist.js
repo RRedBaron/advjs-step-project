@@ -1,21 +1,22 @@
 class VisitCardiologist extends Visit {
-	constructor (doctor) {
-        super(doctor);
+    constructor(doctor, card = {}) {
+        super(doctor, card);
+
         this.inputAge = null;
         this.inputPress = null;
     }
 
-    createElements () {
+    createElements() {
         super.createElements();
-    
+
         this.form.insertAdjacentHTML('beforeend', ` 
-			<input type="text" name="pressure" id="pressure" class="modal-select__select pressure" placeholder="Звичайний артеріальний тиск у форматі 70/110 *" required>
-			<input type="number" name="weight" id="weight" class="modal-select__select" placeholder="Індекс маси тіла *" required>
-			<input type="text" name="diseases" id="diseases" class="modal-select__select" placeholder="Перенесені захворювання серцево-судинної системи *" required>
-			<input type="number" name="age" id="age" class="modal-select__select age" placeholder="Вік *" required>
-		`);                
+			<input type="text" name="pressure" id="pressure" value="${this.card.pressure || ''}"class="modal-select__select pressure" placeholder="Звичайний артеріальний тиск у форматі 70/110 *" required>
+			<input type="number" name="weight" id="weight" value="${this.card.weight || ''}" class="modal-select__select" placeholder="Індекс маси тіла *" required>
+			<input type="text" name="diseases" id="diseases" value="${this.card.diseases || ''}"class="modal-select__select" placeholder="Перенесені захворювання серцево-судинної системи *" required>
+			<input type="number" name="age" id="age" value="${this.card.age || ''}" class="modal-select__select age" placeholder="Вік *" required>
+		`);
     }
-    
+
     validateAge() {
         this.inputAge = this.form.querySelector('.age');
         if (this.inputAge.value > 110) {
@@ -26,7 +27,7 @@ class VisitCardiologist extends Visit {
         }
     }
 
-    validatePressure () {
+    validatePressure() {
         this.inputPress = this.form.querySelector('.pressure');
         let pattern = /(\d+)\/(\d+)/;
         let res = this.inputPress.value.match(pattern);
@@ -38,8 +39,8 @@ class VisitCardiologist extends Visit {
         }
     }
 
-    getValues () {
-        const body = super.getValues();     
+    getValues() {
+        const body = super.getValues();
         if (this.validateAge(body) || this.validatePressure(body)) {
             return false
         } else {

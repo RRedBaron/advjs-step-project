@@ -6,6 +6,7 @@ const urgencySelect = document.querySelector("#urgency-select");
 const statusSelect = document.querySelector("#status-select");
 const logoutButton = document.querySelector("#logout-button");
 
+
 window.onload = () => {
   if (localStorage.getItem("token")) {
     document.querySelector("#login-button").classList.add("button--hidden");
@@ -71,7 +72,7 @@ createCardBtn.addEventListener("click", () => {
     const response = await card.createCard(body);
 
     if (response) {
-      await card?.renderCards();
+      await card?.getAllCards();
       close();
     }
   };
